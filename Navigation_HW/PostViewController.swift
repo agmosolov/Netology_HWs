@@ -8,15 +8,17 @@
 import UIKit
 
 class PostViewController: UIViewController {
-
+    
+    var post: Post?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = .white
-        self.title = "ПОСТ"
         
+        self.view.backgroundColor = .white
+        
+        if let post = post {
+            self.title = post.title
+        }
+         
     }
-    
-
-    
 }
