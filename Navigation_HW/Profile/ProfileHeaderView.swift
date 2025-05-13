@@ -10,13 +10,14 @@ import UIKit
 
 final class ProfileHeaderView: UIView {
     
-    private let avatarView: UIView = {
-        let view = UIView()
+    private let avatarView: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = .black
         view.layer.cornerRadius = 50
         view.clipsToBounds = true
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
+        view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -33,7 +34,7 @@ final class ProfileHeaderView: UIView {
     
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "do something...."
+        label.text = "Do nothing"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +68,10 @@ final class ProfileHeaderView: UIView {
         addSubview(statusLabel)
         addSubview(showStatusButton )
         
+        showStatusButton.addTarget(self, action: #selector(showStatus), for: .touchUpInside)
+        
+        avatarView.image = UIImage(named: "Avatar")
+        
         NSLayoutConstraint.activate([
             
             avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -87,5 +92,9 @@ final class ProfileHeaderView: UIView {
             showStatusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16),
             showStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    @objc func showStatus() {
+        print("The profile status is \(statusLabel.text ?? "empty")")
     }
 }
