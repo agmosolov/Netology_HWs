@@ -41,15 +41,25 @@ final class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let showStatusButton: UIButton = {
+    private let changeStatusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Show Status", for: .normal)
+        button.setTitle("CHANGE STATUS", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = .darkGray
         button.layer.cornerRadius = 4
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    
+    private let statusTextField: UITextField = {
+            let textField = UITextField()
+            textField.borderStyle = .roundedRect
+            textField.placeholder = "Enter new status"
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            return textField
+        }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,9 +76,11 @@ final class ProfileHeaderView: UIView {
         addSubview(avatarView)
         addSubview(nickNameLabel)
         addSubview(statusLabel)
-        addSubview(showStatusButton )
+        addSubview(changeStatusButton)
+        addSubview(statusTextField)
         
-        showStatusButton.addTarget(self, action: #selector(showStatus), for: .touchUpInside)
+        
+        changeStatusButton.addTarget(self, action: #selector(changeStatus), for: .touchUpInside)
         
         avatarView.image = UIImage(named: "Avatar")
         
@@ -84,17 +96,25 @@ final class ProfileHeaderView: UIView {
             nickNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             statusLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: -34),
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -34),
             statusLabel.trailingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor),
             
-            showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            showStatusButton.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            statusTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusTextField.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16),
+            statusTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            changeStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            changeStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            changeStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 10),
+            changeStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
-    @objc func showStatus() {
-        print("The profile status is \(statusLabel.text ?? "empty")")
+    
+    @objc func changeStatus() {
+        if let newStatus = statusTextField.text, !newStatus.isEmpty {
+            statusLabel.text = newStatus
+        }
     }
 }
