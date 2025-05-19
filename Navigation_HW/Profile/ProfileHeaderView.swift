@@ -19,6 +19,7 @@ final class ProfileHeaderView: UIView {
         view.layer.borderColor = UIColor.white.cgColor
         view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "Avatar")
         return view
     }()
     
@@ -43,22 +44,30 @@ final class ProfileHeaderView: UIView {
     
     private let changeStatusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("CHANGE STATUS", for: .normal)
+        button.setTitle("Set Status", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .darkGray
-        button.layer.cornerRadius = 4
+        button.backgroundColor = .blue
+        button.layer.cornerRadius = 12
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     
     private let statusTextField: UITextField = {
-            let textField = UITextField()
-            textField.borderStyle = .roundedRect
-            textField.placeholder = "Enter new status"
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            return textField
-        }()
+        let textField = UITextField()
+//        textField.borderStyle = .roundedRect
+        textField.placeholder = "Enter new status"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.cornerRadius = 12
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.backgroundColor = UIColor.white
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+        return textField
+    }()
     
     
     override init(frame: CGRect) {
@@ -79,10 +88,13 @@ final class ProfileHeaderView: UIView {
         addSubview(changeStatusButton)
         addSubview(statusTextField)
         
-        
         changeStatusButton.addTarget(self, action: #selector(changeStatus), for: .touchUpInside)
         
-        avatarView.image = UIImage(named: "Avatar")
+        setupLayuot()
+    }
+    
+    
+    private func setupLayuot() {
         
         NSLayoutConstraint.activate([
             
@@ -96,19 +108,20 @@ final class ProfileHeaderView: UIView {
             nickNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             statusLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -34),
+            statusLabel.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: -2),
             statusLabel.trailingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor),
             
-            statusTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            statusTextField.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            statusTextField.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 16),
-            statusTextField.heightAnchor.constraint(equalToConstant: 50),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
             
             changeStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             changeStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             changeStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 10),
-            changeStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            changeStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            changeStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
     }
     
     

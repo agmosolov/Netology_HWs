@@ -20,11 +20,17 @@ final class ProfileViewController: UIViewController {
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(profileHeaderView)
         
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        
         NSLayoutConstraint.activate([
                    profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                    profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                    profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                    profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
                ])
+        
     }
 }
