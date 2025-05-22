@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0E882D2DDD191700A5AD7F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0E882C2DDD191700A5AD7F /* LogInViewController.swift */; };
 		6D65853C2DD28BD10044252A /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */; };
 		6D8F704D2DC90BB8005A3205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F704C2DC90BB8005A3205 /* AppDelegate.swift */; };
 		6D8F704F2DC90BB8005A3205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F704E2DC90BB8005A3205 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D0E882C2DDD191700A5AD7F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		6D8F70492DC90BB8005A3205 /* Navigation_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8F704C2DC90BB8005A3205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */,
 				6DBCB10C2DCA63AD00B114A4 /* ProfileViewController.swift */,
+				6D0E882C2DDD191700A5AD7F /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			files = (
 				6D8F704D2DC90BB8005A3205 /* AppDelegate.swift in Sources */,
 				6DBCB10B2DCA639D00B114A4 /* FeedViewController.swift in Sources */,
+				6D0E882D2DDD191700A5AD7F /* LogInViewController.swift in Sources */,
 				6DBCB10D2DCA63AD00B114A4 /* ProfileViewController.swift in Sources */,
 				6DBCB1132DCA6F8F00B114A4 /* InfoViewController.swift in Sources */,
 				6DBCB1112DCA6CCE00B114A4 /* Model.swift in Sources */,
