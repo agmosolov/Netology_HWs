@@ -17,7 +17,7 @@ final class PostViewController: UIViewController {
         self.view.backgroundColor = .white
         
         if let post = post {
-            self.title = post.title
+//            self.title = post.title
         }
         
         setupUI()
