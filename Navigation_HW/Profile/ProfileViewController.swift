@@ -56,14 +56,14 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 // Добавили секцию для фото
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1 // Одна ячейка с фото
+            return 1
         } else {
-            return posts.count // Ячейки с постами
+            return posts.count
         }
     }
     
@@ -89,6 +89,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 220 : 0 // Высота header view только для первой секции
+        return section == 0 ? 220 : 0
     }
 }

@@ -72,7 +72,7 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 8 * 4 // 8 * 4: отступы между ячейками и краями
+        let padding: CGFloat = 8 * 4
         let availableWidth = view.frame.width - padding
         let widthPerItem = availableWidth / 3
         return CGSize(width: widthPerItem, height: widthPerItem)
