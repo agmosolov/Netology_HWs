@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 final class PostViewController: UIViewController {
     
@@ -16,12 +17,20 @@ final class PostViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        if let post = post {
-//            self.title = post.title
-        }
+        changeBackgroundBasedOnScheme()
         
         setupUI()
     }
+    
+    
+    private func changeBackgroundBasedOnScheme() {
+#if DEBUG
+        view.backgroundColor = .red
+#else
+        view.backgroundColor = .blue
+#endif
+    }
+    
     
     private func setupUI() {
         
