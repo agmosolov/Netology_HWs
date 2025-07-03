@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 
 final class ProfileHeaderView: UIView {
@@ -55,7 +56,7 @@ final class ProfileHeaderView: UIView {
     
     private let statusTextField: UITextField = {
         let textField = UITextField()
-//        textField.borderStyle = .roundedRect
+        //        textField.borderStyle = .roundedRect
         textField.placeholder = "Enter new status"
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.cornerRadius = 12
@@ -90,46 +91,47 @@ final class ProfileHeaderView: UIView {
         
         changeStatusButton.addTarget(self, action: #selector(changeStatus), for: .touchUpInside)
         
-        setupLayuot()
+        setupLayout()
     }
     
     
-    private func setupLayuot() {
+    private func setupLayout() {
+        avatarView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.width.height.equalTo(100)
+        }
         
-        NSLayoutConstraint.activate([
-            
-            avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarView.widthAnchor.constraint(equalToConstant: 100),
-            avatarView.heightAnchor.constraint(equalToConstant: 100),
-            
-            nickNameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 16),
-            nickNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            nickNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-            statusLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -10),
-            statusLabel.trailingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor),
-            
-            statusTextField.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            
-            changeStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            changeStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            changeStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 10),
-            changeStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            changeStatusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        nickNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(avatarView.snp.trailing).offset(16)
+            make.top.equalTo(safeAreaLayoutGuide).offset(27)
+            make.trailing.equalToSuperview().offset(-16)
+        }
         
-    }
-    
-    
-    @objc func changeStatus() {
-        if let newStatus = statusTextField.text, !newStatus.isEmpty {
-            statusLabel.text = newStatus
+        statusLabel.snp.makeConstraints { make in
+            make.leading.equalTo(nickNameLabel)
+            make.bottom.equalTo(statusTextField.snp.top).offset(-10)
+            make.trailing.equalTo(nickNameLabel)
+        }
+        
+        statusTextField.snp.makeConstraints { make in
+            make.leading.equalTo(nickNameLabel)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(40)
+        }
+        
+        changeStatusButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(statusTextField.snp.bottom).offset(10)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
+            make.height.equalTo(50)
         }
     }
     
-    
+    @objc func changeStatus() {
+          if let newStatus = statusTextField.text, !newStatus.isEmpty {
+              statusLabel.text = newStatus
+          }
+      }
 }
