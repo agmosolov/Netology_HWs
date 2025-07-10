@@ -14,8 +14,7 @@ final class LogInViewController: UIViewController {
     
     private var userService: UserService!
     
-    // Реализация в первой части ДЗ
-//    private let userService = CurrentUserService(user: User(login: "AAA", fullName: "Alekseev AA", avatar: UIImage(named: "Avatar")!, status: "Codding..."))
+    var loginDelegate: LoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +22,7 @@ final class LogInViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         
+        loginDelegate = LoginInspector()
         
         logInHeaderView.translatesAutoresizingMaskIntoConstraints = false
         logInHeaderView.logInTF.delegate = self
@@ -61,16 +61,26 @@ final class LogInViewController: UIViewController {
     
     //  Выполнен дополнительный commit
     @objc func logInButtonTapped() {
-        guard let login = logInHeaderView.logInTF.text else { return }
-        if let user = userService.getUser(byLogin: login) {
-            let profileVC = ProfileViewController()
-            profileVC.user = user
-            navigationController?.pushViewController(profileVC, animated: true)
+        guard let login = logInHeaderView.logInTF.text, let password = logInHeaderView.passwordTF.text else { return }
+        
+        if let isValid = loginDelegate?.check(login: login, password: password), isValid {
+            // Получаем пользователя через UserService
+            if let user = userService.getUser(byLogin: login) {
+                let profileVC = ProfileViewController()
+                profileVC.user = user
+                navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                showLoginError(message: "Пользователь не найден")
+            }
         } else {
-            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
+            showLoginError(message: "Неверный логин или пароль")
         }
+    }
+
+    private func showLoginError(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     
@@ -91,20 +101,17 @@ final class LogInViewController: UIViewController {
         }
     }
     
-    
     @objc private func keyboardWillHide(notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         logInHeaderView.scrollView.contentInset = contentInsets
         logInHeaderView.scrollView.scrollIndicatorInsets = contentInsets
     }
     
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
-
 
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -12,7 +12,7 @@ final class TestUserService: UserService {
     private var testUser: User
     
     init() {
-        self.testUser = User(login: "TEST", fullName: "TestUser", avatar: UIImage(named: "Avatar")!, status: "testing....")
+        self.testUser = User(login: "TEST", fullName: "TEST", avatar: UIImage(named: "Avatar")!, status: "TEST")
     }
     
     func getUser(byLogin login: String) -> User? {
