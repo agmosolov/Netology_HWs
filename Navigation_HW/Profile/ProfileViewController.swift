@@ -14,10 +14,16 @@ final class ProfileViewController: UIViewController {
     private var posts: [Post] = []
     private let tableView = UITableView()
     
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         profileHeaderView.backgroundColor = .white
+        
+        if let user = user {
+            configureProfileHeaderView(with: user)
+        }
         
         setupPosts()
         setupTableView()
@@ -52,6 +58,12 @@ final class ProfileViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func configureProfileHeaderView(with user: User) {
+        profileHeaderView.nickNameLabel.text = user.fullName
+        profileHeaderView.statusLabel.text = user.status
+        profileHeaderView.avatarView.image = user.avatar
     }
 }
 

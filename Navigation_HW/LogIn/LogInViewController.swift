@@ -12,6 +12,11 @@ final class LogInViewController: UIViewController {
     
     private let logInHeaderView = LogInHeaderView()
     
+    private var userService: UserService!
+    
+    // Реализация в первой части ДЗ
+//    private let userService = CurrentUserService(user: User(login: "AAA", fullName: "Alekseev AA", avatar: UIImage(named: "Avatar")!, status: "Codding..."))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +38,12 @@ final class LogInViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+#if DEBUG
+        userService = TestUserService()
+#else
+        userService = CurrentUserService(user: User(login: "AAA", fullName: "Alekseev AA", avatar: UIImage(named: "Avatar")!, status: "Codding..."))
+#endif
     }
     
     
@@ -48,9 +59,18 @@ final class LogInViewController: UIViewController {
         
     }
     
+    //  Выполнен дополнительный commit
     @objc func logInButtonTapped() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        guard let login = logInHeaderView.logInTF.text else { return }
+        if let user = userService.getUser(byLogin: login) {
+            let profileVC = ProfileViewController()
+            profileVC.user = user
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Неверный логин", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
     }
     
     

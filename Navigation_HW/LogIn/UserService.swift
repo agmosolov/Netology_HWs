@@ -5,4 +5,10 @@
 //  Created by Александр Мосолов on 09.07.2025.
 //
 
-import Foundation
+
+
+protocol UserService {
+    func getUser(byLogin login: String) -> User?
+}
+
+

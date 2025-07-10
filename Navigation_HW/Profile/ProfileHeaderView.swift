@@ -10,7 +10,7 @@ import UIKit
 
 final class ProfileHeaderView: UIView {
     
-    private let avatarView: UIImageView = {
+    var avatarView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .black
         view.layer.cornerRadius = 50
@@ -24,7 +24,7 @@ final class ProfileHeaderView: UIView {
     }()
     
     
-    private let nickNameLabel: UILabel = {
+    var nickNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Sasha 295"
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -33,7 +33,7 @@ final class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let statusLabel: UILabel = {
+    var statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Do nothing"
         label.font = UIFont.systemFont(ofSize: 14)
