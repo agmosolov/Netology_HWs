@@ -52,6 +52,7 @@ final class LogInHeaderView: UIView {
         tf.font?.withSize(16)
         tf.tintColor = UIColor(named: "accentColor")
         tf.autocapitalizationType = .none
+        tf.text = "AAA"
         return tf
     }()
     
@@ -70,6 +71,7 @@ final class LogInHeaderView: UIView {
         tf.isSecureTextEntry = true
         tf.placeholder = "Enter your password"
         tf.font?.withSize(16)
+        tf.text = "123"
         return tf
     }()
 

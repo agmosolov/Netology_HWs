@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import iOSIntPackage
+
 
 final class PhotosViewController: UIViewController {
     
@@ -20,7 +22,9 @@ final class PhotosViewController: UIViewController {
         return collectionView
     }()
     
-    private let photos = (1...20).map { UIImage(named: "Photo \($0)") }
+    private var defaultPhotos = (1...20).compactMap { UIImage(named: "Photo \($0)") }
+    private var photos = [UIImage]()
+    private let imagePublisherFacade = ImagePublisherFacade()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,9 @@ final class PhotosViewController: UIViewController {
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
         
         setupLayout()
+        
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1.5, repeat: 40, userImages: defaultPhotos)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +53,11 @@ final class PhotosViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    
+    
+    deinit {
+            imagePublisherFacade.removeSubscription(for: self)
+        }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
@@ -77,4 +89,13 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let widthPerItem = availableWidth / 3
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        photos.append(contentsOf: images)
+        collectionView.reloadData()
+    }
+    
 }
