@@ -42,15 +42,32 @@ final class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let changeStatusButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Set Status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 12
+    
+    
+    private lazy var changeStatusButton: CustomButton = {
+        let button = CustomButton(
+            title: "SET STATUS",
+            titleColor: .white,
+            backgroundColor: .customBlue
+        ) { [weak self] in
+            self?.changeStatus()
+            }
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    
+    
+// Старая реализация
+//    private let changeStatusButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Set Status", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = .blue
+//        button.layer.cornerRadius = 12
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     
     private let statusTextField: UITextField = {

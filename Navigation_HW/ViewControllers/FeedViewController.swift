@@ -9,9 +9,6 @@ import UIKit
 
 final class FeedViewController: UIViewController {
 
-//    let post = Post(title: "Заголовок моего поста")
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,11 +18,21 @@ final class FeedViewController: UIViewController {
         setupUI()
     }
     
+    
     private func setupUI() {
         
-        let postButton = UIButton(type: .system)
-        postButton.setTitle("ОТКРЫТЬ ПОСТ", for: .normal)
-        postButton.addTarget(self, action: #selector(openPost), for: .touchUpInside)
+        let postButton = CustomButton(
+            title: "ОТКРЫТЬ ПОСТ",
+            titleColor: .white,
+            backgroundColor: .customBlue)
+        { [weak self] in
+            self?.openPost()
+            }
+        
+// Старая реализация
+//        let postButton = UIButton(type: .system)
+//        postButton.setTitle("ОТКРЫТЬ ПОСТ", for: .normal)
+//        postButton.addTarget(self, action: #selector(openPost), for: .touchUpInside)
         
         postButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(postButton)
@@ -40,10 +47,7 @@ final class FeedViewController: UIViewController {
     
     @objc func openPost() {
         let postViewController = PostViewController()
-//        postViewController.post = post
-        
         self.navigationController?.pushViewController(postViewController, animated: true)
-        
     }
 
 }

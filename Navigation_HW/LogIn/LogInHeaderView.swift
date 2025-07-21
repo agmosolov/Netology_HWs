@@ -76,16 +76,31 @@ final class LogInHeaderView: UIView {
     }()
 
     
-    let logInButton: UIButton = {
-        let button = UIButton()
+    lazy var logInButton: CustomButton = {
+        let button = CustomButton(
+            title: "LOG IN",
+            titleColor: .white,
+            backgroundColor: .customBlue
+        ) { [weak self] in
+            self?.updateButtonAlpha()
+            }
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .customBlue
-        button.layer.cornerRadius = 10
-        button.setTitle("LOG IN", for: .normal)
-        button.setTitleColor(.white, for: .normal)
         return button
-        
     }()
+    
+    
+    
+// Старая реализация
+//    let logInButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.backgroundColor = .customBlue
+//        button.layer.cornerRadius = 10
+//        button.setTitle("LOG IN", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        return button
+//        
+//    }()
     
     
     override init(frame: CGRect) {
@@ -113,8 +128,8 @@ final class LogInHeaderView: UIView {
         viewForTF.addSubview(separatorLineForTF)
         viewForTF.addSubview(passwordTF)
         
-        logInButton.addTarget(self, action: #selector(buttonStateChanged), for: .allTouchEvents)
-        logInButton.addTarget(self, action: #selector(buttonStateChanged), for: .valueChanged)
+//        logInButton.addTarget(self, action: #selector(buttonStateChanged), for: .allTouchEvents)
+//        logInButton.addTarget(self, action: #selector(buttonStateChanged), for: .valueChanged)
         
         setupLayuot()
         setupTextFieldPadding()
@@ -177,9 +192,9 @@ final class LogInHeaderView: UIView {
     
     
 
-    @objc private func buttonStateChanged() {
-        updateButtonAlpha()
-    }
+//    @objc private func buttonStateChanged() {
+//        updateButtonAlpha()
+//    }
     
     
     @objc private func clearLogInTF() {
@@ -191,12 +206,12 @@ final class LogInHeaderView: UIView {
     }
     
     private func updateButtonAlpha() {
-        if logInButton.isSelected || logInButton.isHighlighted || !logInButton.isEnabled {
-            logInButton.alpha = 0.8
-        } else {
-            logInButton.alpha = 1.0
+            if logInButton.isSelected || logInButton.isHighlighted || !logInButton.isEnabled {
+                logInButton.alpha = 0.8
+            } else {
+                logInButton.alpha = 1.0
+            }
         }
-    }
     
     private func setupTextFieldPadding() {
         let paddingWidth: CGFloat = 10.0
