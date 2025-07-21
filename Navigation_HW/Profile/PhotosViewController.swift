@@ -40,7 +40,7 @@ final class PhotosViewController: UIViewController {
         setupLayout()
         
         imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 1.5, repeat: 40, userImages: defaultPhotos)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: defaultPhotos)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,8 +94,12 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension PhotosViewController: ImageLibrarySubscriber {
     
     func receive(images: [UIImage]) {
-        photos.append(contentsOf: images)
+        photos = images
         collectionView.reloadData()
-    }
+            
+        // скролить на самый нижний ряд фоток, чтобы видеть что добавляется
+        let item = IndexPath(item: images.count - 1, section: 0)
+        collectionView.scrollToItem(at: item, at: .bottom, animated: true)
+        }
     
 }
