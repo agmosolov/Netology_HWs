@@ -10,66 +10,20 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var appCoordinator: AppCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            
-            guard let windowScene = (scene as? UIWindowScene) else { return }
-            
-            let window = UIWindow(windowScene: windowScene)
-            
-            let tabBarController = UITabBarController()
-            
-            let feedViewController = FeedViewController()
-            let feedNavigationController = UINavigationController(rootViewController: feedViewController)
-            feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "list.bullet"), tag: 0)
-            
-            let logInViewController = LogInViewController()
-            
-            let factory = MyLoginFactory()
-            logInViewController.loginDelegate = factory.makeLoginInspector()
-            
-            let profileNavigationController = UINavigationController(rootViewController: logInViewController)
-            profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
-            
-            tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
-            
-            window.rootViewController = tabBarController
-            self.window = window
-            window.makeKeyAndVisible()
-        }
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        
+        let tabBarController = UITabBarController()
+        appCoordinator = AppCoordinator(tabBarController: tabBarController)
+        appCoordinator?.start()
+        
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
     }
-    
-
-// Прежняя реализация
-//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//            
-//            guard let windowScene = (scene as? UIWindowScene) else { return }
-//            
-//            let window = UIWindow(windowScene: windowScene)
-//            
-//            let tabBarController = UITabBarController()
-//            
-//            let feedViewController = FeedViewController()
-//            
-//            let feedNavigationController = UINavigationController(rootViewController: feedViewController)
-//            feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "list.bullet"), tag: 0)
-//            
-//            let logInViewController = LogInViewController()
-//            
-//            // Установка делегата LoginInspector для LogInViewController
-//            logInViewController.loginDelegate = LoginInspector()
-//            
-//            let profileNavigationController = UINavigationController(rootViewController: logInViewController)
-//            profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
-//            
-//            tabBarController.viewControllers = [
-//                feedNavigationController, profileNavigationController
-//            ]
-//            
-//            window.rootViewController = tabBarController
-//            self.window = window
-//            window.makeKeyAndVisible()
-//        }
-//}
-
+}

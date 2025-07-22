@@ -14,6 +14,8 @@ final class ProfileViewController: UIViewController {
     private var posts: [Post] = []
     private let tableView = UITableView()
     
+    weak var coordinator: ProfileCoordinator?
+    
     var user: User?
     
     override func viewDidLoad() {

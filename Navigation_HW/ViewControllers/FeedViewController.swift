@@ -13,6 +13,7 @@ final class FeedViewController: UIViewController {
     private let statusLabel = UILabel()
     private let guessTextField = UITextField()
     
+    weak var coordinator: FeedCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,23 +85,6 @@ final class FeedViewController: UIViewController {
     
     
     @objc func openPost() {
-        let postViewController = PostViewController()
-        self.navigationController?.pushViewController(postViewController, animated: true)
+        coordinator?.openPost()
     }
-    
-//    private func checkGuess() {
-//        guard let guess = guessTextField.text, !guess.isEmpty else {
-//            statusLabel.text = "Поле не должно быть пустым"
-//            statusLabel.textColor = .red
-//            return
-//        }
-//        
-//        if feedModel.check(word: guess) {
-//            statusLabel.text = "Верно!"
-//            statusLabel.textColor = .systemGreen
-//        } else {
-//            statusLabel.text = "Неверно!"
-//            statusLabel.textColor = .red
-//        }
-//    }
 }

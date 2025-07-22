@@ -14,6 +14,8 @@ final class LogInViewController: UIViewController {
     
     private var userService: UserService!
     
+    weak var coordinator: ProfileCoordinator?
+    
     var loginDelegate: LoginViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -65,11 +67,8 @@ final class LogInViewController: UIViewController {
         guard let login = logInHeaderView.logInTF.text, let password = logInHeaderView.passwordTF.text else { return }
         
         if let isValid = loginDelegate?.check(login: login, password: password), isValid {
-            // Получаем пользователя через UserService
             if let user = userService.getUser(byLogin: login) {
-                let profileVC = ProfileViewController()
-                profileVC.user = user
-                navigationController?.pushViewController(profileVC, animated: true)
+                coordinator?.showProfile(for: user)
             } else {
                 showLoginError(message: "Пользователь не найден")
             }
