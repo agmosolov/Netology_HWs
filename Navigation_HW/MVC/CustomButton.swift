@@ -21,6 +21,7 @@ class CustomButton: UIButton {
         self.backgroundColor = backgroundColor
         self.action = action
         
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 10
         
         self.contentEdgeInsets = UIEdgeInsets(

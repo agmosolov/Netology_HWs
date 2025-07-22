@@ -9,7 +9,7 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    private let feedModel = FeedModel()
+    private let viewModel = FeedViewModel()
     private let statusLabel = UILabel()
     private let guessTextField = UITextField()
     
@@ -19,6 +19,7 @@ final class FeedViewController: UIViewController {
         self.view.backgroundColor = .white
         self.title = "ЛЕНТА"
         setupUI()
+        bindViewModel()
     }
     
     
@@ -31,7 +32,6 @@ final class FeedViewController: UIViewController {
         { [weak self] in
             self?.openPost()
         }
-        postButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(postButton)
         
         guessTextField.borderStyle = .roundedRect
@@ -44,9 +44,8 @@ final class FeedViewController: UIViewController {
             titleColor: .white,
             backgroundColor: .customBlue
         ) { [weak self] in
-            self?.checkGuess()
+            self?.viewModel.checkGuess(word: self?.guessTextField.text)
         }
-        checkGuessButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(checkGuessButton)
         
         statusLabel.text = "Введите кодовое слово"
@@ -74,24 +73,34 @@ final class FeedViewController: UIViewController {
     }
     
     
+    private func bindViewModel() {
+        
+        viewModel.statusText = { [weak self] text, color
+        in
+            self?.statusLabel.text = text
+            self?.statusLabel.textColor = color
+        }
+    }
+    
+    
     @objc func openPost() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
-    private func checkGuess() {
-        guard let guess = guessTextField.text, !guess.isEmpty else {
-            statusLabel.text = "Поле не должно быть пустым"
-            statusLabel.textColor = .red
-            return
-        }
-        
-        if feedModel.check(word: guess) {
-            statusLabel.text = "Верно!"
-            statusLabel.textColor = .systemGreen
-        } else {
-            statusLabel.text = "Неверно!"
-            statusLabel.textColor = .red
-        }
-    }
+//    private func checkGuess() {
+//        guard let guess = guessTextField.text, !guess.isEmpty else {
+//            statusLabel.text = "Поле не должно быть пустым"
+//            statusLabel.textColor = .red
+//            return
+//        }
+//        
+//        if feedModel.check(word: guess) {
+//            statusLabel.text = "Верно!"
+//            statusLabel.textColor = .systemGreen
+//        } else {
+//            statusLabel.text = "Неверно!"
+//            statusLabel.textColor = .red
+//        }
+//    }
 }
