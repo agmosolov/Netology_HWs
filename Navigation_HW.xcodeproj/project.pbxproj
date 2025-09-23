@@ -14,6 +14,8 @@
 		6D1250FC2E30067700DF94EF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1250FB2E30067700DF94EF /* Coordinator.swift */; };
 		6D1250FE2E30069100DF94EF /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1250FD2E30069100DF94EF /* FeedCoordinator.swift */; };
 		6D1251002E3006C100DF94EF /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1250FF2E3006C100DF94EF /* ProfileCoordinator.swift */; };
+		6D24A4232E82F962009246E9 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24A4222E82F962009246E9 /* AppConfiguration.swift */; };
+		6D24A4252E82F98A009246E9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D24A4242E82F98A009246E9 /* NetworkService.swift */; };
 		6D5F468E2E12F97300EA62B6 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D5F468D2E12F97300EA62B6 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D5F46912E12F97300EA62B6 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F468B2E12F97300EA62B6 /* StorageService.framework */; };
 		6D5F46922E12F97300EA62B6 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F468B2E12F97300EA62B6 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -75,6 +77,8 @@
 		6D1250FB2E30067700DF94EF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		6D1250FD2E30069100DF94EF /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		6D1250FF2E3006C100DF94EF /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		6D24A4222E82F962009246E9 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		6D24A4242E82F98A009246E9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6D5F468B2E12F97300EA62B6 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5F468D2E12F97300EA62B6 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D24A4262E82F996009246E9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6D24A4222E82F962009246E9 /* AppConfiguration.swift */,
+				6D24A4242E82F98A009246E9 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		6D5F468C2E12F97300EA62B6 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +181,7 @@
 		6D8F704B2DC90BB8005A3205 /* Navigation_HW */ = {
 			isa = PBXGroup;
 			children = (
+				6D24A4262E82F996009246E9 /* Network */,
 				6DF3DFE82E2039A60051C425 /* Application */,
 				6DF3DFEB2E2047850051C425 /* ViewControllers */,
 				6DAFBB6A2DE7A639000C518B /* LogIn */,
@@ -207,9 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				6D8F704C2DC90BB8005A3205 /* AppDelegate.swift */,
+				6D8F704E2DC90BB8005A3205 /* SceneDelegate.swift */,
 				6D1250F92E30063F00DF94EF /* AppCoordinator.swift */,
 				6D1250FB2E30067700DF94EF /* Coordinator.swift */,
-				6D8F704E2DC90BB8005A3205 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -388,6 +402,8 @@
 				6D1250FE2E30069100DF94EF /* FeedCoordinator.swift in Sources */,
 				6D1250FC2E30067700DF94EF /* Coordinator.swift in Sources */,
 				6D65853C2DD28BD10044252A /* ProfileHeaderView.swift in Sources */,
+				6D24A4252E82F98A009246E9 /* NetworkService.swift in Sources */,
+				6D24A4232E82F962009246E9 /* AppConfiguration.swift in Sources */,
 				6D113F5A2DE4CE0E004DFF97 /* LogInHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
