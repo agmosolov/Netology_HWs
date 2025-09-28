@@ -9,6 +9,8 @@ import UIKit
 
 final class InfoViewController: UIViewController {
 
+    private var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,23 +18,90 @@ final class InfoViewController: UIViewController {
         self.title = "ИНФОРМАЦИЯ"
         
         setupUI()
+        fetchPlanetData()
     }
     
     private func setupUI() {
         
-        let alertButton = UIButton(type: .system)
-        alertButton.setTitle("ПОКАЗАТЬ", for: .normal)
-        alertButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        
-        alertButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(alertButton)
-        
-        NSLayoutConstraint.activate([
-            alertButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            alertButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
+        titleLabel = UILabel()
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.textAlignment = .center
+            titleLabel.numberOfLines = 0
+
+            self.view.addSubview(titleLabel)
+
+            NSLayoutConstraint.activate([
+                titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                titleLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+                titleLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            ])
+
+            let alertButton = UIButton(type: .system)
+            alertButton.setTitle("ПОКАЗАТЬ", for: .normal)
+            alertButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+
+            alertButton.translatesAutoresizingMaskIntoConstraints = false
+
+            self.view.addSubview(alertButton)
+
+            NSLayoutConstraint.activate([
+                alertButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                alertButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            ])
     }
+    
+    func fetchPlanetData() {
+        let urlString = "https://swapi.dev/api/planets/1/"
+        guard let url = URL(string: urlString) else { return }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error fetching data: \(error)")
+                return
+            }
+
+            guard let data = data else { return }
+//            print("guard по data выполнен")
+            do {
+                let decoder = JSONDecoder()
+                let planet = try decoder.decode(Planet.self, from: data)
+                DispatchQueue.main.async {
+                    self.titleLabel.text = "Orbital Period: \(planet.orbitalPeriod)"
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //    func fetchData() {
+    //        let urlString = "https://jsonplaceholder.typicode.com/todos/1"
+    //        guard let url = URL(string: urlString) else { return }
+    //
+    //        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    //            if let error = error {
+    //                print("Error fetching data: \(error)")
+    //                return
+    //            }
+    //
+    //            guard let data = data else { return }
+    //
+    //            do {
+    //                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+    //                   let title = jsonObject["title"] as? String {
+    //                    DispatchQueue.main.async {
+    //                        self.titleLabel.text = title
+    //                    }
+    //                }
+    //            } catch {
+    //                print("Error decoding JSON: \(error)")
+    //            }
+    //        }
+    //
+    //        task.resume()
+    //    }
     
     @objc func showAlert() {
         

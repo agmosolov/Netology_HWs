@@ -20,6 +20,7 @@
 		6D5F46912E12F97300EA62B6 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F468B2E12F97300EA62B6 /* StorageService.framework */; };
 		6D5F46922E12F97300EA62B6 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5F468B2E12F97300EA62B6 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6D5F46962E12FA8A00EA62B6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBCB1102DCA6CCE00B114A4 /* Model.swift */; };
+		6D650A5C2E8964E100BC1CD3 /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D650A5B2E8964E100BC1CD3 /* JSONModel.swift */; };
 		6D65853C2DD28BD10044252A /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */; };
 		6D8B82D02E26C2700090E7E6 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8B82CF2E26C2700090E7E6 /* iOSIntPackage */; };
 		6D8F704D2DC90BB8005A3205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F704C2DC90BB8005A3205 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		6D24A4242E82F98A009246E9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6D5F468B2E12F97300EA62B6 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5F468D2E12F97300EA62B6 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		6D650A5B2E8964E100BC1CD3 /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		6D65853B2DD28BD10044252A /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		6D8F70492DC90BB8005A3205 /* Navigation_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8F704C2DC90BB8005A3205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				6DBCB10A2DCA639D00B114A4 /* FeedViewController.swift */,
 				6D9EBC782E2FAC2D00DCF3FD /* FeedViewModel.swift */,
 				6DBCB10E2DCA659D00B114A4 /* PostViewController.swift */,
+				6D650A5B2E8964E100BC1CD3 /* JSONModel.swift */,
 				6DBCB1122DCA6F8F00B114A4 /* InfoViewController.swift */,
 			);
 			path = ViewControllers;
@@ -393,6 +396,7 @@
 				6D9EBC792E2FAC2D00DCF3FD /* FeedViewModel.swift in Sources */,
 				6DBCB1132DCA6F8F00B114A4 /* InfoViewController.swift in Sources */,
 				6D1251002E3006C100DF94EF /* ProfileCoordinator.swift in Sources */,
+				6D650A5C2E8964E100BC1CD3 /* JSONModel.swift in Sources */,
 				6D113F5C2DE4F826004DFF97 /* PostTableViewCell.swift in Sources */,
 				6D8F704F2DC90BB8005A3205 /* SceneDelegate.swift in Sources */,
 				6DCE38782E1EFF360019D681 /* UserService.swift in Sources */,
