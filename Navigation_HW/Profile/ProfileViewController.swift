@@ -31,7 +31,29 @@ final class ProfileViewController: UIViewController {
         setupTableView()
         setupLayout()
         
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+            doubleTapGesture.numberOfTapsRequired = 2
+            tableView.addGestureRecognizer(doubleTapGesture)
+        
     }
+    
+    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: tableView)
+        if let indexPath = tableView.indexPathForRow(at: location), indexPath.section == 1 {
+            let post = posts[indexPath.row]
+            
+            CoreDataManager.shared.savePost(author: post.author,
+                                           postDescription: post.description,
+                                           image: post.image,
+                                           likes: post.likes,
+                                           views: post.views)
+            
+            NotificationCenter.default.post(name: NSNotification.Name("PostAdded"), object: nil)
+            
+            print("Post saved to favorites: \(post.author)")
+        }
+    }
+
     
     private func setupPosts() {
         posts = [
