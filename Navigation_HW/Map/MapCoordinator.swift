@@ -11,13 +11,14 @@ class MapCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
+        let mapViewController = MapViewController()
+        mapViewController.title = "Карта"
+        
+        mapViewController.tabBarItem = UITabBarItem(title: "Карта", image: UIImage(systemName: "map.fill"), tag: 3)
+        navigationController = UINavigationController(rootViewController: mapViewController)
     }
 
     func start() {
-        let mapViewController = MapViewController()
-        mapViewController.title = "Map"
-        navigationController.pushViewController(mapViewController, animated: false)
     }
 }

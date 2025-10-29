@@ -21,7 +21,7 @@ class AppCoordinator: Coordinator {
         let feedCoordinator = FeedCoordinator()
         let profileCoordinator = ProfileCoordinator()
         let favoritesCoordinator = FavoritesCoordinator()
-        let mapCoordinator = MapCoordinator(navigationController: UINavigationController())
+        let mapCoordinator = MapCoordinator()
 
         childCoordinators.append(feedCoordinator)
         childCoordinators.append(profileCoordinator)
