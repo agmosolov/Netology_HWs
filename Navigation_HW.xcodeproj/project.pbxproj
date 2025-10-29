@@ -45,6 +45,7 @@
 		6DD3F4CC2E9BA12E0034DF65 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD3F4CB2E9BA12E0034DF65 /* CoreDataManager.swift */; };
 		6DDD10CE2EB27ADD00ED8F7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDD10CD2EB27ADD00ED8F7E /* MapViewController.swift */; };
 		6DDD10D12EB27B0D00ED8F7E /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDD10D02EB27B0D00ED8F7E /* MapCoordinator.swift */; };
+		6DDD10D32EB28AD300ED8F7E /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDD10D22EB28AD300ED8F7E /* LocalNotificationsService.swift */; };
 		6DE90A7D2E2EB22F00E88148 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE90A7C2E2EB22F00E88148 /* CustomButton.swift */; };
 		6DF3DFE32E202A0F0051C425 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3DFE22E202A0F0051C425 /* Checker.swift */; };
 		6DF3DFE52E2030D70051C425 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3DFE42E2030D70051C425 /* LoginViewControllerDelegate.swift */; };
@@ -115,6 +116,7 @@
 		6DD3F4CB2E9BA12E0034DF65 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6DDD10CD2EB27ADD00ED8F7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6DDD10D02EB27B0D00ED8F7E /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		6DDD10D22EB28AD300ED8F7E /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		6DE90A7C2E2EB22F00E88148 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6DF3DFE22E202A0F0051C425 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		6DF3DFE42E2030D70051C425 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				6D24A4262E82F996009246E9 /* Network */,
 				6DF3DFE82E2039A60051C425 /* Application */,
+				6DDD10D42EB28ADD00ED8F7E /* Notifications */,
 				6DDD10CF2EB27AE400ED8F7E /* Map */,
 				6DF3DFEB2E2047850051C425 /* ViewControllers */,
 				6DAFBB6A2DE7A639000C518B /* LogIn */,
@@ -231,6 +234,14 @@
 				6DDD10D02EB27B0D00ED8F7E /* MapCoordinator.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		6DDD10D42EB28ADD00ED8F7E /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				6DDD10D22EB28AD300ED8F7E /* LocalNotificationsService.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		6DE90A7B2E2EB1FD00E88148 /* MVC */ = {
@@ -419,6 +430,7 @@
 				6DCE387A2E1EFFBC0019D681 /* CurrentUserService.swift in Sources */,
 				6DF3DFE32E202A0F0051C425 /* Checker.swift in Sources */,
 				6DCE38762E1EFED40019D681 /* User.swift in Sources */,
+				6DDD10D32EB28AD300ED8F7E /* LocalNotificationsService.swift in Sources */,
 				6DDD10CE2EB27ADD00ED8F7E /* MapViewController.swift in Sources */,
 				6DD3F4C72E9B9F640034DF65 /* FavoritesCoordinator.swift in Sources */,
 				6D1250FA2E30063F00DF94EF /* AppCoordinator.swift in Sources */,
