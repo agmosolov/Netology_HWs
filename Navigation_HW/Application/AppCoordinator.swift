@@ -21,19 +21,23 @@ class AppCoordinator: Coordinator {
         let feedCoordinator = FeedCoordinator()
         let profileCoordinator = ProfileCoordinator()
         let favoritesCoordinator = FavoritesCoordinator()
+        let mapCoordinator = MapCoordinator(navigationController: UINavigationController())
 
         childCoordinators.append(feedCoordinator)
         childCoordinators.append(profileCoordinator)
         childCoordinators.append(favoritesCoordinator)
+        childCoordinators.append(mapCoordinator)
 
         feedCoordinator.start()
         profileCoordinator.start()
         favoritesCoordinator.start()
+        mapCoordinator.start()
 
         tabBarController.viewControllers = [
             feedCoordinator.navigationController,
             profileCoordinator.navigationController,
-            favoritesCoordinator.navigationController
+            favoritesCoordinator.navigationController,
+            mapCoordinator.navigationController
         ]
     }
 }
