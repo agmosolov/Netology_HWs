@@ -7,28 +7,32 @@
 
 import UIKit
 
+   final class FeedViewModel {
+       
+       private let feedModel: FeedModelProtocol
+       
+       var statusText: ((String, UIColor) -> Void)?
+       
+       init(feedModel: FeedModelProtocol) {
+           self.feedModel = feedModel
+       }
 
-final class FeedViewModel {
-    
-    private let secretWord = "swift"
-    
-    var statusText: ((String, UIColor) -> Void)?
-    
-    func checkGuess(word: String?) {
-        
-        guard let word = word, !word.isEmpty else {
-            statusText?("Поле не должно быть пустым", .red)
-            return
-        }
-        
-        if check(word: word) {
-            statusText?("Верно!", .systemGreen)
-        } else {
-            statusText?("Не верно!", .red)
-        }
-    }
-    
-    private func check(word: String) -> Bool {
-            return word.lowercased() == secretWord.lowercased()
-        }
-}
+       func checkGuess(word: String?) {
+           guard let word = word, !word.isEmpty else {
+               statusText?("Поле не должно быть пустым", .red)
+               return
+           }
+
+           feedModel.check(word: word) { [weak self] result in
+               guard let self = self else { return }
+               switch result {
+               case .success(true):
+                   self.statusText?("Верно!", .systemGreen)
+               case .success(false):
+                   self.statusText?("Не верно!", .red)
+               case .failure(let error):
+                   self.statusText?("Ошибка: \(error.localizedDescription)", .red)
+               }
+           }
+       }
+   }

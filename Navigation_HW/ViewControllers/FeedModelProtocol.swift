@@ -5,4 +5,7 @@
 //  Created by Александр Мосолов on 31.10.2025.
 //
 
-import Foundation
+protocol FeedModelProtocol {
+       func check(word: String, completion: (Result<Bool, Error>) -> Void)
+   }
+

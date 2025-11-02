@@ -41,6 +41,17 @@
                ReferencedContainer = "container:Navigation_HW.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6DD936672EB4F9060042351E"
+               BuildableName = "Navigation_HWTests.xctest"
+               BlueprintName = "Navigation_HWTests"
+               ReferencedContainer = "container:Navigation_HW.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
