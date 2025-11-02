@@ -9,7 +9,7 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    private let viewModel = FeedViewModel()
+    private let viewModel = FeedViewModel(feedModel: <#any FeedModelProtocol#>)
     private let statusLabel = UILabel()
     private let guessTextField = UITextField()
     
